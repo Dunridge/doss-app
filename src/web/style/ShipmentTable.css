@@ -7,10 +7,19 @@
 
 .ShipmentTable__headerRow {
     display: flex;
+    flex-direction: column;
     justify-content: start;
-    gap: 8px;
+}
+
+.ShipmentTable__shipments {
+    margin-top: 12px;
+    width: 100%;
 }
 
 .ShipmentTable__shipmentsHeader {
     font-weight: 600;
+}
+
+.ShipmentTable__shipmentsTable {
+    width: 100%;
 }
