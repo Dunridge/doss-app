@@ -13,7 +13,6 @@ export default function WorkspaceList() {
 
   const fetchWorkspaces = async () => {
     const workspaces = await DosspaceApi.getWorkspaces();
-    debugger;
     setWorkspaces(workspaces);
   }
 

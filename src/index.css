@@ -1,3 +1,7 @@
+
+/* TODO: import the styles like all the other components */
+@import '../src/web/style/ShipmentTable.css';
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
