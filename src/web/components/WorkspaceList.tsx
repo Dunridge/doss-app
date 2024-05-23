@@ -1,33 +1,27 @@
-import { useEffect, useState } from 'react'
-import '../style/WorkspaceList.css'
-import DosspaceApi from '../api'
+import { useEffect, useState } from 'react';
+import DosspaceApi from '../api';
+import '../style/WorkspaceList.css';
+import { HomepageWorkspace } from '../utils/interfaces/HomepageWorkspace';
+import Workspace from './Workspace';
 
-interface HomepageWorkspace {
-  id: string
-  title: string
-}
-
-/** Homepage list of all workspaces that have been created */
 export default function WorkspaceList() {
-  const [workspaces, setWorkspaces] = useState<HomepageWorkspace[]>([])
+  const [workspaces, setWorkspaces] = useState<HomepageWorkspace[]>([]);
 
-  // Fetch all workspaces from the API
   useEffect(() => {
-    async function fetchWorkspaces() {
-      const workspaces = await DosspaceApi.getWorkspaces()
-      setWorkspaces(workspaces)
-    }
+    fetchWorkspaces();
+  }, []);
 
-    fetchWorkspaces()
-  }, [])
+  const fetchWorkspaces = async () => {
+    const workspaces = await DosspaceApi.getWorkspaces();
+    debugger;
+    setWorkspaces(workspaces);
+  }
 
   return (
     <div className="WorkspaceList">
       <h1 className="WorkspaceList__header">All workspaces</h1>
       {workspaces.map((workspace) => (
-        <div key={workspace.id} className="WorkspaceList__workspaceCard">
-          {workspace.title}
-        </div>
+        <Workspace key={workspace.id} id={workspace.id} title={workspace.title} />
       ))}
     </div>
   )
