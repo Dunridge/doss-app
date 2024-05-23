@@ -14,9 +14,11 @@
   padding-bottom: 8px;
 }
 
+.WorkspaceList__workspaces {
+  width: 100%;
+}
+
 .WorkspaceList__workspaceCard {
-  min-width: 400px;
-  max-width: 600px;
   width: 100%;
   display: flex;
   flex-direction: column;

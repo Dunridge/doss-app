@@ -19,9 +19,12 @@ export default function WorkspaceList() {
   return (
     <div className="WorkspaceList">
       <h1 className="WorkspaceList__header">All workspaces</h1>
-      {workspaces.map((workspace) => (
-        <Workspace key={workspace.id} id={workspace.id} title={workspace.title} />
-      ))}
+
+      <div className="WorkspaceList__workspaces">
+        {workspaces.map((workspace) => (
+          <Workspace key={workspace.id} id={workspace.id} title={workspace.title} />
+        ))}
+      </div>
     </div>
   )
 }
