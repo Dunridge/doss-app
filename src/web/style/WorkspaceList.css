@@ -37,12 +37,14 @@
   display: flex;
   align-items: center;
   gap: 8px;
+  margin-bottom: 16px;
 }
 
 .WorkspaceList__table {
-  width: max-content;
+  width: 97%;
   border: 1px solid grey;
   padding: 8px;
+  border-radius: 8px;
 }
 
 .WorkspaceList__titleText {
