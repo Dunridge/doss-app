@@ -1,18 +1,56 @@
 .WorkspaceList {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .WorkspaceList__header {
+  width: 100%;
   font-size: 18px;
   font-weight: bold;
   margin: 0 0 16px;
   padding-bottom: 8px;
+}
 
+.WorkspaceList__workspaces {
+  width: 100%;
 }
 
 .WorkspaceList__workspaceCard {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  border-radius: 8px;
+  box-shadow: 0 0 8px 0 grey;
+  
   color: black;
   margin-bottom: 8px;
+  border: 1px solid grey;
+  padding: 8px;
+}
+
+.WorkspaceList__title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.WorkspaceList__table {
+  width: 97%;
+  border: 1px solid grey;
+  padding: 8px;
+  border-radius: 8px;
+}
+
+.WorkspaceList__titleText {
+  font-weight: bolder;
+}
+
+.WorkspaceList__tableHeader {
+  font-weight: bolder;
 }
