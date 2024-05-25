@@ -4,23 +4,12 @@ import DosspaceApi from '../api';
 import { IWorkspace } from '../utils/interfaces/IWorkspace';
 import { IShipmentTable } from '../utils/interfaces/IShipmentTable';
 import ShipmentTable from './ShipmentTable';
+import { IShipment } from '../utils/interfaces/IShipment';
 
-export default function Workspace({ id, title }: IWorkspaceProps) {
-    const [buildShipments, setBuildShipments] = useState<IShipmentTable[]>([]);
+export default function Workspace({ id, title, buildShipments }: IWorkspaceProps) {
+    const [workspace, setWorkspace] = useState<IWorkspace>({ id, title, buildShipments } as IWorkspace);
 
-    useEffect(() => {
-        const idIsDefined = id !== undefined;
-        idIsDefined && fetchWorkspace(id);
-    }, [id]);
-
-    useEffect(() => {
-        console.log(buildShipments);
-    }, [buildShipments])
-
-    const fetchWorkspace = async (workspaceId: string) => {
-        const workspace: IWorkspace = await DosspaceApi.getWorkspace(workspaceId);
-        const workspaceShipments = workspace.buildShipments;
-        setBuildShipments(workspaceShipments);
+    const updateWorkspace = async () => {
     }
 
     return (
@@ -32,8 +21,9 @@ export default function Workspace({ id, title }: IWorkspaceProps) {
             <div className="WorkspaceList__table">
                 <div className="WorkspaceList__tableHeader">Build Shipments Table</div>
                 <div className="WorkspaceList__tableBody">
-                    {buildShipments.map((shipmentTable) => <ShipmentTable key={shipmentTable.id} {...shipmentTable} />)}
+                    {workspace?.buildShipments?.map((shipmentTable) => <ShipmentTable key={shipmentTable.id} {...shipmentTable} />)}
                 </div>
+                <button onClick={updateWorkspace}>Add Shipment</button>
             </div>
         </div>
     );

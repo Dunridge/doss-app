@@ -22,7 +22,7 @@ export default function ShipmentTable({ buildNumber, id, shipments }: IShipmentT
                         </tr>
                     </thead>
                     <tbody> 
-                        {shipments.map((shipment) => <Shipment key={shipment.id} {...shipment} />)}
+                        {shipments?.map((shipment) => <Shipment key={shipment?.id} {...shipment} />)}
                     </tbody>
                 </table>
             </div>

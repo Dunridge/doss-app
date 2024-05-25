@@ -1,5 +1,4 @@
+import { IWorkspace } from "./IWorkspace";
 
-export interface IWorkspaceProps {
-    id: string;
-    title: string;
+export interface IWorkspaceProps extends IWorkspace {
 }
