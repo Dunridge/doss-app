@@ -16,6 +16,9 @@
 
 .WorkspaceList__workspaces {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .WorkspaceList__workspaceCard {

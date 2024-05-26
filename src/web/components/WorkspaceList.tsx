@@ -40,15 +40,32 @@ export default function WorkspaceList() {
     return workspace;
   }
 
+  const handleCreateNewWorkspace = async () => {
+    createNewWorkspace().then((newWorkspace: any) => {
+      setWorkspaces([...workspaces, newWorkspace]);
+    });
+  }
+
+  const createNewWorkspace = async () => {
+    try {
+      const data: IWorkspace = await DosspaceApi.createWorkspace();
+      
+      return data;
+    } catch (error) {
+      console.error('Error updating the workspace:', error);
+    }
+  }
+
   return (
     <div className="WorkspaceList">
       <h1 className="WorkspaceList__header">All workspaces</h1>
 
       <div className="WorkspaceList__workspaces">
         {workspaces.map((workspace) => (
-          <Workspace key={workspace.id} id={workspace.id} title={workspace.title} buildShipments={workspace.buildShipments} />
+          <Workspace key={workspace?.id} id={workspace?.id} title={workspace?.title} buildShipments={workspace?.buildShipments} />
         ))}
       </div>
+      <button onClick={handleCreateNewWorkspace}>Create new workspace</button>
     </div>
   )
 }

@@ -44,11 +44,6 @@ export default function Workspace({ id, title, buildShipments }: IWorkspaceProps
         updateWorkspace(id, postObj);
     }
 
-
-    const createNewWorkspace = async () => {
-        return;
-    }
-
     const updateWorkspace = async (workspaceId: string, updatedWorkspaceData: any) => {
         try {
             const data: IWorkspace = await DosspaceApi.updateWorkspace(workspaceId, updatedWorkspaceData);
