@@ -21,8 +21,10 @@ export function createWorkspace(dbString: string): Workspace {
       {
         id: uuidv4(),
         buildNumber: '',
+        // TODO: comment this out for now so that the newly created worspace has no shipmments
         // Initialize the workspace with a single empty build shipment
-        shipments: [{ id: uuidv4(), description: '', orderNumber: '', cost: 0 }],
+        // shipments: [{ id: uuidv4(), description: '', orderNumber: '', cost: 0 }],
+        shipments: [],
       },
     ],
   }
