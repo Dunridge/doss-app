@@ -33,10 +33,12 @@ class DosspaceApi {
     debugger;
     try {
       const response: any = await axios.post(`${BASE_URL}/${id}`, body);
-      const result: Workspace = response.data;
+      const result: Workspace = response.data.workspace;
+      debugger;
       return result;
     } catch (err) {
-      throw new Error('Unable to update the workspace')
+      //@ts-ignore
+      throw new Error('Unable to update the workspace', err?.message)
     }
   }
 }

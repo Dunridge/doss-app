@@ -10,19 +10,23 @@ export default function WorkspaceList() {
   const [workspaces, setWorkspaces] = useState<IWorkspace[]>([]);
 
   useEffect(() => {
+    initializeWorkspaces();
+  }, []);
+
+  const initializeWorkspaces = () => {
     fetchWorkspaces().then(async (workspacesArr: IBEWorkspace[]) => {
       console.log(workspacesArr);
       const workspacePromises: Promise<IWorkspace>[] = await workspacesArr?.map(async (workspace) => {
         const { id } = workspace;
         const resWorkspace = await fetchWorkspace(id);
-        
+
         return resWorkspace;
       })
       const updatedWorkspaces = await Promise.all(workspacePromises);
       debugger;
       setWorkspaces(updatedWorkspaces);
     });
-  }, []);
+  }
 
   const fetchWorkspaces = async () => {
     const workspaces = await DosspaceApi.getWorkspaces();
