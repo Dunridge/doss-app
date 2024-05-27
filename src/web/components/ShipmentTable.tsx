@@ -8,6 +8,7 @@ import { useState } from "react";
 import { IShipmentForm } from "../utils/interfaces/IShipmentForm";
 import { IShipment } from "../utils/interfaces/IShipment";
 import { IWorkspace } from "../utils/interfaces/IWorkspace";
+import { toast, ToastContainer } from "react-toastify"
 
 export default function ShipmentTable({ buildNumber, id, shipments, workspace, setWorkspace, updateWorkspace }: IShipmentTableProps) {
     const [shipmentForm, setShipmentForm] = useState<IShipmentForm>({ cost: '', description: '', orderNumber: '' });
@@ -52,6 +53,7 @@ export default function ShipmentTable({ buildNumber, id, shipments, workspace, s
                 setWorkspace(resWorkspace);
             }
             setShipmentForm({ cost: '', description: '', orderNumber: '' });
+            toast.success("Shipment added successfully");
         });
     }
 

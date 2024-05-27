@@ -1,8 +1,9 @@
-import WorkspaceList from './WorkspaceList'
+import { Route, Routes, useNavigate } from 'react-router-dom'
+import { ToastContainer } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
 import '../style/Workspaces.css'
-import { Routes, Route } from 'react-router-dom'
-import { useNavigate } from 'react-router-dom'
 import ReadMe from './ReadMe'
+import WorkspaceList from './WorkspaceList'
 
 function Workspaces() {
   const navigate = useNavigate()
@@ -18,6 +19,7 @@ function Workspaces() {
           <Route path="*" element={<WorkspaceList />} />
         </Routes>
       </div>
+      <ToastContainer position='top-center' />
     </>
   )
 }

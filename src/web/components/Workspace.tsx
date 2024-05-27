@@ -4,6 +4,7 @@ import { IWorkspace } from '../utils/interfaces/IWorkspace';
 import { IWorkspaceProps } from '../utils/interfaces/IWorkspaceProps';
 import ShipmentTable from './ShipmentTable';
 import { v4 as uuidv4 } from 'uuid'
+import { toast, ToastContainer } from "react-toastify"
 
 export default function Workspace({ id, title, buildShipments, updateWorkspace, generateBuildNumber}: IWorkspaceProps) {
     const [workspace, setWorkspace] = useState<IWorkspace>({ id, title, buildShipments } as IWorkspace);
@@ -29,6 +30,7 @@ export default function Workspace({ id, title, buildShipments, updateWorkspace, 
         updateWorkspace(workspaceId, postObj).then((resWorkspace) => {
             if (!!resWorkspace) {
                 setWorkspace(resWorkspace);
+                toast.success('Shipment Table Added');
             }
         });
     }
