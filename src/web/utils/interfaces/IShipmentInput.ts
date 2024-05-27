@@ -5,4 +5,5 @@ export interface IShipmentInput {
     name: string;
     pattern?: string;
     type?: TextOrNumberInputType;
+    tooltip?: string;
 }
