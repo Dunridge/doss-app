@@ -1,4 +1,5 @@
 import { IWorkspapceInputProps } from "../utils/interfaces/IWorkspaceInputProps";
+import '../style/WorkspaceInput.css';
 
 export default function WorkspaceInput({ name, keyStr, form, setForm }: IWorkspapceInputProps) {
 

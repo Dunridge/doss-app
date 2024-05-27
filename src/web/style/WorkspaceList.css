@@ -4,6 +4,7 @@
   align-items: center;
   box-sizing: border-box;
   width: 100%;
+  padding-bottom: 120px;
 }
 
 .WorkspaceList__header {
@@ -87,4 +88,9 @@
   height: 50px;
   border-radius: 5px;
   margin-top: 26px;
+}
+
+.WorkspaceList__workspaceForm {
+  margin-top: 100px;
+  width: 400px;
 }

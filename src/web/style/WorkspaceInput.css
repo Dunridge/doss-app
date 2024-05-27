@@ -1,9 +1,8 @@
-
-.ShipmentInput {
-    width: 100%;
+.WorspaceInput {
+  width: 100%;
 }
 
-.ShipmentInput__input {
+.WorkspaceInput__input {
   width: 400px;
   padding: 10px 14px;
   border: 1px solid rgba(234, 236, 240, 1);
@@ -11,6 +10,6 @@
   box-sizing: border-box;
 }
 
-.ShipmentInput__label {
-    font-weight: 600;
+.WorkspaceInput__label {
+  font-weight: 600;
 }
