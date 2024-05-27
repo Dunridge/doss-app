@@ -1,4 +1,6 @@
 import { IShipmentInputProps } from "../utils/interfaces/IShipmentInputProps";
+import '../style/ShipmentInput.css';
+
 
 export default function ShipmentInput({ name, keyStr, form, setForm }: IShipmentInputProps) {
 
