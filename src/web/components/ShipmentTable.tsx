@@ -1,8 +1,58 @@
 import { IShipmentTableProps } from "../utils/interfaces/IShipmentTableProps";
 import Shipment from "./Shipment";
 import "../style/ShipmentTable.css";
+import { shipmentFormFieldsArr } from "../utils/data/shipmentFormFieldsArr";
+import { IShipmentInput } from "../utils/interfaces/IShipmentInput";
+import ShipmentInput from "./ShipmentInput";
+import { useState } from "react";
+import { IShipmentForm } from "../utils/interfaces/IShipmentForm";
+import { IShipment } from "../utils/interfaces/IShipment";
+import { IWorkspace } from "../utils/interfaces/IWorkspace";
 
-export default function ShipmentTable({ buildNumber, id, shipments }: IShipmentTableProps) {
+export default function ShipmentTable({ buildNumber, id, shipments, workspace, setWorkspace, updateWorkspace }: IShipmentTableProps) {
+    const [shipmentForm, setShipmentForm] = useState<IShipmentForm>({ cost: '', description: '', orderNumber: '' });
+
+    const handleAddShipment = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        const newShipment: IShipment = {
+            id: Date.now().toString(),
+            description: shipmentForm.description,
+            orderNumber: shipmentForm.orderNumber,
+            cost: +shipmentForm.cost
+        };
+
+        const buildShipmentsCopy = [...workspace.buildShipments];
+
+        if (buildShipmentsCopy.length > 0) {
+            buildShipmentsCopy[0] = {
+                ...buildShipmentsCopy[0],
+                shipments: [...buildShipmentsCopy[0].shipments, newShipment]
+            };
+        } else {
+            buildShipmentsCopy.push({
+                id: Date.now().toString(),
+                buildNumber: 'A82D2-108',
+                shipments: [newShipment]
+            });
+        }
+
+        const updatedWorkspace: IWorkspace = {
+            ...workspace,
+            buildShipments: buildShipmentsCopy
+        };
+
+        const postObj = {
+            workspace: updatedWorkspace
+        };
+
+        updateWorkspace(id, postObj).then((resWorkspace: IWorkspace | undefined) => {
+            if (resWorkspace) {
+                setWorkspace(resWorkspace);
+            }
+            setShipmentForm({ cost: '', description: '', orderNumber: '' });
+        });
+    }
 
     return (
         <div className="ShipmentTable">
@@ -34,6 +84,16 @@ export default function ShipmentTable({ buildNumber, id, shipments }: IShipmentT
                     </div>
                 )
             }
+
+            <div className="ShipmentTable__formContainer">
+                {/* TODO: rename these classNames and copy the styles  */}
+                <form className="WorkspaceList__form" action="" onSubmit={handleAddShipment}>
+                    <div className="WorkspaceList__form-fields">
+                        {shipmentFormFieldsArr?.map((shipmentInput: IShipmentInput) => (<ShipmentInput key={shipmentInput.keyStr} form={shipmentForm} setForm={setShipmentForm} name={shipmentInput.name} keyStr={shipmentInput.keyStr} type={shipmentInput.type} pattern={shipmentInput.pattern} />))}
+                    </div>
+                    <button className="WorkspaceList__submit" type='submit'>Add Shipment</button>
+                </form>
+            </div>
         </div>
     )
 }

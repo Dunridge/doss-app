@@ -39,3 +39,9 @@
     font-weight: 600;
     margin-top: 16px
 }
+
+.ShipmentTable__formContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
