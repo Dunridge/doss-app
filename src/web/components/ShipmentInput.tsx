@@ -1,12 +1,21 @@
 import { IShipmentInputProps } from "../utils/interfaces/IShipmentInputProps";
 import '../style/ShipmentInput.css';
 
-
 export default function ShipmentInput({ name, keyStr, form, setForm, pattern, type = 'text' }: IShipmentInputProps) {
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const inputValue = e.target.value;
-        setForm({ ...form, [keyStr]: inputValue });
+        let inputValue: string | number = e.target.value;
+        
+        if (!isNaN(parseFloat(inputValue)) && isFinite(+inputValue)) {
+            inputValue = parseFloat(inputValue);
+            if (inputValue < 0) {
+                inputValue = 0;
+            }
+        } else {
+            inputValue = e.target.value;
+        }
+        
+        setForm({ ...form, [keyStr]: inputValue.toString() });
     }
 
     return (

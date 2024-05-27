@@ -15,6 +15,5 @@ export const shipmentFormFieldsArr: IShipmentInput[] = [
         keyStr: 'cost',
         name: 'Cost',
         type: 'number',
-        // pattern: '/^\d{3}-\d{7}-\d{7}$/'
     },
 ]
