@@ -2,16 +2,18 @@ import { IShipmentInput } from "../interfaces/IShipmentInput";
 
 export const shipmentFormFieldsArr: IShipmentInput[] = [
     {
-        keyStr: 'description',
-        name: 'Description'
+        keyStr: 'orderNumber',
+        name: 'Order number',
+        pattern: '^\\d{3}-\\d{7}-\\d{7}$'
     },
     {
-        keyStr: 'orderNumber',
-        name: 'Order number'
+        keyStr: 'description',
+        name: 'Description',
+        pattern: '\\d+ units'
     },
     {
         keyStr: 'cost',
         name: 'Cost',
-        type: 'number'
+        type: 'number',
     },
 ]

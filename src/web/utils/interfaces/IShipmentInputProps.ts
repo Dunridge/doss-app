@@ -1,10 +1,16 @@
 import { TextOrNumberInputType } from "../types/TextOrNumberInputType";
 import { IShipmentForm } from "./IShipmentForm";
+import { IShipmentInput } from "./IShipmentInput";
 
-export interface IShipmentInputProps {
-    keyStr: string;
-    name: string;
+export interface IShipmentInputProps extends IShipmentInput {
+    
+
+
     form: IShipmentForm;
     setForm: React.Dispatch<React.SetStateAction<IShipmentForm>>;
-    type?: TextOrNumberInputType;
+
+    // keyStr: string;
+    // name: string;
+    // pattern?: string;
+    // type?: TextOrNumberInputType;
 }
