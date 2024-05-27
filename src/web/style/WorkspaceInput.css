@@ -1,0 +1,15 @@
+.WorspaceInput {
+  width: 100%;
+}
+
+.WorkspaceInput__input {
+  width: 400px;
+  padding: 10px 14px;
+  border: 1px solid rgba(234, 236, 240, 1);
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+.WorkspaceInput__label {
+  font-weight: 600;
+}
