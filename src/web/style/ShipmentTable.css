@@ -22,4 +22,10 @@
 
 .ShipmentTable__shipmentsTable {
     width: 100%;
+    border: 1px solid rgba(234, 236, 240, 1);
+}
+
+.ShipmentTable__shipmentsTableHeadRow th {
+    border: 1px solid rgba(234, 236, 240, 1);
+    padding: 14px 0;
 }

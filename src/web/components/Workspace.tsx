@@ -68,7 +68,7 @@ export default function Workspace({ id, title, buildShipments }: IWorkspaceProps
     return (
         <div className="WorkspaceList__workspaceCard">
             <div className="WorkspaceList__title">
-                <span className='WorkspaceList__titleText'>Title:</span>
+                <span className='WorkspaceList__titleText'>Workspace:</span>
                 <span className='WorkspaceList__titleValue'>{title}</span>
             </div>
             <div className="WorkspaceList__table">

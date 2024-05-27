@@ -14,8 +14,8 @@ export default function ShipmentTable({ buildNumber, id, shipments }: IShipmentT
             <div className="ShipmentTable__shipments">
                 <div className="ShipmentTable__shipmentsHeader">Shipments</div>
                 <table className="ShipmentTable__shipmentsTable">
-                    <thead>
-                        <tr>
+                    <thead className="ShipmentTable__shipmentsTableHead">
+                        <tr className="ShipmentTable__shipmentsTableHeadRow">
                             <th>Order #</th>
                             <th>Description</th>
                             <th>Cost</th>
