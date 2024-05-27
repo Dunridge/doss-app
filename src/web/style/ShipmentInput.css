@@ -1,6 +1,5 @@
-
 .ShipmentInput {
-    width: 100%;
+  width: 100%;
 }
 
 .ShipmentInput__input {
@@ -16,7 +15,7 @@
 }
 
 .ShipmentInput__label {
-    font-weight: 600;
+  font-weight: 600;
 }
 
 .ShipmentInput__tooltip {

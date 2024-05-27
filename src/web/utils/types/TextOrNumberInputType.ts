@@ -1,2 +1,1 @@
-
-export type TextOrNumberInputType = 'text' | 'number';
+export type TextOrNumberInputType = 'text' | 'number'
