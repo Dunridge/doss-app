@@ -12,7 +12,7 @@ export default function ShipmentInput({ name, keyStr, form, setForm, type = 'tex
     return (
         <div className="ShipmentInput">
             <div className="ShipmentInput__label">{ name }</div>
-            <input type={type} onChange={handleInputChange} className="ShipmentInput__input" value={form[keyStr]} />
+            <input required type={type} onChange={handleInputChange} className="ShipmentInput__input" value={form[keyStr]} />
         </div>
     );
 }
