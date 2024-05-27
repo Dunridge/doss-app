@@ -10,7 +10,7 @@ import { IWorkspaceProps } from '../utils/interfaces/IWorkspaceProps';
 import ShipmentInput from './ShipmentInput';
 import ShipmentTable from './ShipmentTable';
 
-export default function Workspace({ id, title, buildShipments }: IWorkspaceProps) {
+export default function Workspace({ id, title, buildShipments, updateWorkspace }: IWorkspaceProps) {
     const [workspace, setWorkspace] = useState<IWorkspace>({ id, title, buildShipments } as IWorkspace);
     const [shipmentForm, setShipmentForm] = useState<IShipmentForm>({ cost: '', description: '', orderNumber: '' });
 
@@ -48,21 +48,12 @@ export default function Workspace({ id, title, buildShipments }: IWorkspaceProps
             workspace: updatedWorkspace
         };
 
-        updateWorkspace(id, postObj).then(() => {
+        updateWorkspace(id, postObj).then((resWorkspace: IWorkspace | undefined) => {
+            if (resWorkspace) {
+                setWorkspace(resWorkspace);
+            }
             setShipmentForm({ cost: '', description: '', orderNumber: '' });
         });
-    }
-
-    const updateWorkspace = async (workspaceId: string, updatedWorkspaceData: any) => {
-        try {
-            const data: IWorkspace = await DosspaceApi.updateWorkspace(workspaceId, updatedWorkspaceData);
-            console.log('Updated workspace:', data);
-            debugger;
-            // TODO: fix this update
-            setWorkspace(data);
-        } catch (error) {
-            console.error('Error updating the workspace:', error);
-        }
     }
 
     return (
