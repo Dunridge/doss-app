@@ -48,43 +48,31 @@ export default function WorkspaceList() {
     console.log(workspaceForm);
     const { title } = workspaceForm;
 
-    // TODO: modify this bit to update the name of the workspace on the BE
-    createNewWorkspace().then((newWorkspace: IWorkspace | undefined) => {
-      // const castWorkspace = newWorkspace as IWorkspace;
+    try {
+      const newWorkspace = await createNewWorkspace();
 
-      const workspaceId = newWorkspace?.id!;
-      debugger;
-      // TODO: here call the update workspace API and update the name 
+      if (newWorkspace) {
+        const workspaceId = newWorkspace.id;
 
-      if (!!newWorkspace) {
-        const updatedWorkspace: IWorkspace = {
+        const updatedWorkspace = {
           ...newWorkspace,
           title: title
-        }
+        };
+
         const postObj = {
           workspace: updatedWorkspace
         };
-        debugger;
-        let resWorkspace: IWorkspace = {} as IWorkspace;
-        debugger;
-        updateWorkspace(workspaceId, postObj).then((data: IWorkspace | undefined) => {
-          debugger;
-          if (!!data) {
-            resWorkspace = data;
-            debugger;
-          } 
-        })
 
-        console.log(resWorkspace);
-        debugger;
+        const resWorkspace = await updateWorkspace(workspaceId, postObj);
 
-        // const updatedWorkspace = updateWorkspace(workspaceId, workspaceToUpdate);
-        // TODO: collect the form values here and pass them to the newWorkspace object
-        // TODO: move the update workspace logic up the chain of componenets here 
-        setWorkspaces([...workspaces, resWorkspace]);
+        if (resWorkspace) {
+          setWorkspaces([...workspaces, resWorkspace]);
+        }
       }
-    });
-  }
+    } catch (error) {
+      console.error('Error creating new workspace:', error);
+    }
+  };
 
   const createNewWorkspace = async (): Promise<IWorkspace | undefined> => {
     try {
