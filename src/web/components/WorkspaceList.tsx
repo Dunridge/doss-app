@@ -49,14 +49,18 @@ export default function WorkspaceList() {
     const { title } = workspaceForm;
 
     try {
-      const newWorkspace = await createNewWorkspace();
+      const newWorkspace: IWorkspace | undefined = await createNewWorkspace();
 
       if (newWorkspace) {
         const workspaceId = newWorkspace.id;
 
-        const updatedWorkspace = {
+        const updatedWorkspace: IWorkspace = {
           ...newWorkspace,
-          title: title
+          title: title,
+          buildShipments: newWorkspace.buildShipments.map((shipment) => ({
+            ...shipment,
+            buildNumber: generateBuildNumber()
+          }))
         };
 
         const postObj = {
@@ -73,6 +77,17 @@ export default function WorkspaceList() {
       console.error('Error creating new workspace:', error);
     }
   };
+
+  const generateBuildNumber = () => {
+    const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const getRandomLetter = () => letters[Math.floor(Math.random() * letters.length)];
+    const getRandomDigit = () => Math.floor(Math.random() * 10);
+
+    const part1 = `${getRandomLetter()}${getRandomDigit()}${getRandomDigit()}${getRandomLetter()}${getRandomDigit()}`;
+    const part2 = `${getRandomDigit()}${getRandomDigit()}${getRandomDigit()}`;
+
+    return `${part1}-${part2}`;
+}
 
   const createNewWorkspace = async (): Promise<IWorkspace | undefined> => {
     try {
