@@ -1,4 +1,3 @@
-import { IShipment } from './IShipment'
 
 export interface IShipmentForm {
   description: string
