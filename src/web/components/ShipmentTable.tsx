@@ -56,6 +56,10 @@ export default function ShipmentTable({ buildNumber, id, shipments, workspace, s
 
     return (
         <div className="ShipmentTable">
+            <div className="ShipmentTable__tableHeader">
+                <span>Build Shipments Table</span>
+            </div>
+            
             <div className="ShipmentTable__headerRow">
                 <div>Build number: {buildNumber}</div>
                 <div>ID: {id}</div>

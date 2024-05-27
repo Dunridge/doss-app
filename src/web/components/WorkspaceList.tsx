@@ -118,7 +118,7 @@ export default function WorkspaceList() {
 
       <div className="WorkspaceList__workspaces">
         {workspaces.map((workspace) => (
-          <Workspace updateWorkspace={updateWorkspace} key={workspace?.id} id={workspace?.id} title={workspace?.title} buildShipments={workspace?.buildShipments} />
+          <Workspace updateWorkspace={updateWorkspace} key={workspace?.id} id={workspace?.id} title={workspace?.title} buildShipments={workspace?.buildShipments} generateBuildNumber={generateBuildNumber} />
         ))}
       </div>
 

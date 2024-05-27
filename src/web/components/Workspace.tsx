@@ -3,12 +3,41 @@ import { IShipmentTable } from '../utils/interfaces/IShipmentTable';
 import { IWorkspace } from '../utils/interfaces/IWorkspace';
 import { IWorkspaceProps } from '../utils/interfaces/IWorkspaceProps';
 import ShipmentTable from './ShipmentTable';
+import { v4 as uuidv4 } from 'uuid'
 
-export default function Workspace({ id, title, buildShipments, updateWorkspace }: IWorkspaceProps) {
+export default function Workspace({ id, title, buildShipments, updateWorkspace, generateBuildNumber}: IWorkspaceProps) {
     const [workspace, setWorkspace] = useState<IWorkspace>({ id, title, buildShipments } as IWorkspace);
 
     const handleAddShipmentTable = () => {
-        // TODO: update the workspace to have another build
+        // TODO: update the workspace (buildShipments: IShipmentTable[]) with IShipmentTable to have another build
+        debugger;
+        // updateWorkspace --> setWorkspace in then()
+        console.log(workspace);
+
+        const workspaceId = workspace.id;
+        const futureWorkspaceUpdatedObj: IWorkspace = {
+            ...workspace,
+            buildShipments: [
+                ...workspace.buildShipments,
+                {
+                    id: uuidv4(), 
+                    buildNumber: generateBuildNumber(),
+                    shipments: []
+                }
+            ]
+        }
+
+        const postObj = {
+            workspace: futureWorkspaceUpdatedObj
+        };
+
+        updateWorkspace(workspaceId, postObj).then((resWorkspace) => {
+            debugger;
+            if (!!resWorkspace) {
+                debugger;
+                setWorkspace(resWorkspace);
+            }
+        });
         debugger;
     }
     
@@ -19,7 +48,7 @@ export default function Workspace({ id, title, buildShipments, updateWorkspace }
                 <span className='WorkspaceList__titleValue'>{title}</span>
             </div>
             <div className="WorkspaceList__table">
-                <div className="WorkspaceList__tableHeader">Build Shipments Table</div>
+                {/* <div className="WorkspaceList__tableHeader">Build Shipments Table</div> */}
                 <div className="WorkspaceList__tableBody">
                     {workspace?.buildShipments?.map((shipmentTable: IShipmentTable) => <ShipmentTable key={shipmentTable.id} {...shipmentTable} workspace={workspace} setWorkspace={setWorkspace} updateWorkspace={updateWorkspace}/>)}
                 </div>
