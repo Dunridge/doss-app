@@ -23,16 +23,17 @@ export default function ShipmentTable({ buildNumber, id, shipments, workspace, s
         };
 
         const buildShipmentsCopy = [...workspace.buildShipments];
+        const buildShipmentIndex = buildShipmentsCopy.findIndex(bs => bs.id === id);
 
-        if (buildShipmentsCopy.length > 0) {
-            buildShipmentsCopy[0] = {
-                ...buildShipmentsCopy[0],
-                shipments: [...buildShipmentsCopy[0].shipments, newShipment]
+        if (buildShipmentIndex !== -1) {
+            buildShipmentsCopy[buildShipmentIndex] = {
+                ...buildShipmentsCopy[buildShipmentIndex],
+                shipments: [...buildShipmentsCopy[buildShipmentIndex].shipments, newShipment]
             };
         } else {
             buildShipmentsCopy.push({
                 id: Date.now().toString(),
-                buildNumber: 'A82D2-108',
+                buildNumber: buildNumber,
                 shipments: [newShipment]
             });
         }

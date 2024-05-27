@@ -9,11 +9,6 @@ export default function Workspace({ id, title, buildShipments, updateWorkspace, 
     const [workspace, setWorkspace] = useState<IWorkspace>({ id, title, buildShipments } as IWorkspace);
 
     const handleAddShipmentTable = () => {
-        // TODO: update the workspace (buildShipments: IShipmentTable[]) with IShipmentTable to have another build
-        debugger;
-        // updateWorkspace --> setWorkspace in then()
-        console.log(workspace);
-
         const workspaceId = workspace.id;
         const futureWorkspaceUpdatedObj: IWorkspace = {
             ...workspace,
@@ -32,13 +27,10 @@ export default function Workspace({ id, title, buildShipments, updateWorkspace, 
         };
 
         updateWorkspace(workspaceId, postObj).then((resWorkspace) => {
-            debugger;
             if (!!resWorkspace) {
-                debugger;
                 setWorkspace(resWorkspace);
             }
         });
-        debugger;
     }
     
     return (
@@ -48,7 +40,6 @@ export default function Workspace({ id, title, buildShipments, updateWorkspace, 
                 <span className='WorkspaceList__titleValue'>{title}</span>
             </div>
             <div className="WorkspaceList__table">
-                {/* <div className="WorkspaceList__tableHeader">Build Shipments Table</div> */}
                 <div className="WorkspaceList__tableBody">
                     {workspace?.buildShipments?.map((shipmentTable: IShipmentTable) => <ShipmentTable key={shipmentTable.id} {...shipmentTable} workspace={workspace} setWorkspace={setWorkspace} updateWorkspace={updateWorkspace}/>)}
                 </div>
