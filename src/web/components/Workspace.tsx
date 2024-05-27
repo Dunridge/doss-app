@@ -1,20 +1,27 @@
-import { useEffect, useState } from 'react';
-import { IWorkspaceProps } from '../utils/interfaces/IWorkspaceProps';
+import { useState } from 'react';
 import DosspaceApi from '../api';
-import { IWorkspace } from '../utils/interfaces/IWorkspace';
-import { IShipmentTable } from '../utils/interfaces/IShipmentTable';
-import ShipmentTable from './ShipmentTable';
+import { shipmentFormFieldsArr } from '../utils/data/shipmentFormFieldsArr';
 import { IShipment } from '../utils/interfaces/IShipment';
+import { IShipmentForm } from '../utils/interfaces/IShipmentForm';
+import { IShipmentInput } from '../utils/interfaces/IShipmentInput';
+import { IShipmentTable } from '../utils/interfaces/IShipmentTable';
+import { IWorkspace } from '../utils/interfaces/IWorkspace';
+import { IWorkspaceProps } from '../utils/interfaces/IWorkspaceProps';
+import ShipmentInput from './ShipmentInput';
+import ShipmentTable from './ShipmentTable';
 
 export default function Workspace({ id, title, buildShipments }: IWorkspaceProps) {
     const [workspace, setWorkspace] = useState<IWorkspace>({ id, title, buildShipments } as IWorkspace);
+    const [shipmentForm, setShipmentForm] = useState<IShipmentForm>({ cost: '', description: '', orderNumber: '' });
 
-    const handleAddShipment = () => {
+    const handleAddShipment = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
         const newShipment: IShipment = {
             id: Date.now().toString(),
-            description: 'New Shipment',
-            orderNumber: '123456',
-            cost: 100
+            description: shipmentForm.description,
+            orderNumber: shipmentForm.orderNumber,
+            cost: +shipmentForm.cost
         };
 
         const buildShipmentsCopy = [...workspace.buildShipments];
@@ -41,7 +48,9 @@ export default function Workspace({ id, title, buildShipments }: IWorkspaceProps
             workspace: updatedWorkspace
         };
 
-        updateWorkspace(id, postObj);
+        updateWorkspace(id, postObj).then(() => {
+            setShipmentForm({ cost: '', description: '', orderNumber: '' });
+        });
     }
 
     const updateWorkspace = async (workspaceId: string, updatedWorkspaceData: any) => {
@@ -67,7 +76,13 @@ export default function Workspace({ id, title, buildShipments }: IWorkspaceProps
                 <div className="WorkspaceList__tableBody">
                     {workspace?.buildShipments?.map((shipmentTable: IShipmentTable) => <ShipmentTable key={shipmentTable.id} {...shipmentTable} />)}
                 </div>
-                <button onClick={handleAddShipment}>Add Shipment</button>
+
+                <form className="WorkspaceList__form" action="" onSubmit={handleAddShipment}>
+                    <div className="WorkspaceList__form-fields">
+                        { shipmentFormFieldsArr?.map((shipmentInput: IShipmentInput) => (<ShipmentInput key={shipmentInput.keyStr} form={shipmentForm} setForm={setShipmentForm} name={shipmentInput.name} keyStr={shipmentInput.keyStr} />))}
+                    </div>
+                    <button type='submit'>Add Shipment</button>
+                </form>
             </div>
         </div>
     );

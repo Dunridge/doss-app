@@ -5,9 +5,14 @@ import { HomepageWorkspace } from '../utils/interfaces/HomepageWorkspace';
 import { IWorkspace } from '../utils/interfaces/IWorkspace';
 import { Workspace as IBEWorkspace } from '../../api/types';
 import Workspace from './Workspace';
+import { IWorkspaceForm } from '../utils/interfaces/IWorkspaceForm';
+import ShipmentInput from './ShipmentInput';
+import WorkspaceInput from './WorkspaceInput';
 
 export default function WorkspaceList() {
   const [workspaces, setWorkspaces] = useState<IWorkspace[]>([]);
+
+  const [workspaceForm, setWworkspaceForm] = useState<IWorkspaceForm>({ title: '' });
 
   useEffect(() => {
     initializeWorkspaces();
@@ -16,6 +21,7 @@ export default function WorkspaceList() {
   const initializeWorkspaces = () => {
     fetchWorkspaces().then(async (workspacesArr: IBEWorkspace[]) => {
       console.log(workspacesArr);
+      debugger;
       const workspacePromises: Promise<IWorkspace>[] = await workspacesArr?.map(async (workspace) => {
         const { id } = workspace;
         const resWorkspace = await fetchWorkspace(id);
@@ -40,16 +46,29 @@ export default function WorkspaceList() {
     return workspace;
   }
 
-  const handleCreateNewWorkspace = async () => {
-    createNewWorkspace().then((newWorkspace: any) => {
-      setWorkspaces([...workspaces, newWorkspace]);
+  const handleCreateNewWorkspace = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log(workspaceForm);
+    const { title } = workspaceForm;
+
+    // TODO: modify this bit to update the name of the workspace on the BE
+    createNewWorkspace().then((newWorkspace: IWorkspace | undefined) => {
+      // const castWorkspace = newWorkspace as IWorkspace;
+      if (!!newWorkspace) {
+        newWorkspace.title = title;
+        debugger;
+        // TODO: collect the form values here and pass them to the newWorkspace object
+        // TODO: move the update workspace logic up the chain of componenets here 
+        setWorkspaces([...workspaces, newWorkspace]);
+      }
     });
   }
 
-  const createNewWorkspace = async () => {
+  const createNewWorkspace = async (): Promise<IWorkspace | undefined> => {
     try {
       const data: IWorkspace = await DosspaceApi.createWorkspace();
-      
+      debugger;
+
       return data;
     } catch (error) {
       console.error('Error updating the workspace:', error);
@@ -65,7 +84,13 @@ export default function WorkspaceList() {
           <Workspace key={workspace?.id} id={workspace?.id} title={workspace?.title} buildShipments={workspace?.buildShipments} />
         ))}
       </div>
-      <button onClick={handleCreateNewWorkspace}>Create new workspace</button>
+
+      <form onSubmit={handleCreateNewWorkspace}>
+        <WorkspaceInput name="Workspace title" keyStr="title" form={workspaceForm} setForm={setWworkspaceForm} />
+
+        <button type='submit'>Create new workspace</button>
+      </form>
+
     </div>
   )
 }
