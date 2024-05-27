@@ -1,4 +1,4 @@
 export interface IWorkspaceForm {
-    title: string;
-    [key: string]: string;
+  title: string
+  [key: string]: string
 }

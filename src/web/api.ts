@@ -43,11 +43,11 @@ class DosspaceApi {
 
   static async createWorkspace(): Promise<Workspace> {
     try {
-      const response: any = await axios.post(`${BASE_URL}/`);
-      debugger;
-      const result: Workspace = response.data.workspace;
-      debugger;
-      return result;
+      const response: any = await axios.post(`${BASE_URL}/`)
+      debugger
+      const result: Workspace = response.data.workspace
+      debugger
+      return result
     } catch (err) {
       //@ts-ignore
       throw new Error('Unable to create the workspace', err?.message)

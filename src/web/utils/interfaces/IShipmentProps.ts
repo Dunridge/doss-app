@@ -1,4 +1,3 @@
-import { IShipment } from "./IShipment";
+import { IShipment } from './IShipment'
 
-export interface IShipmentProps extends IShipment {
-}
+export interface IShipmentProps extends IShipment {}
