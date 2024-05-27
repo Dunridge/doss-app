@@ -1,17 +1,14 @@
 import { useEffect, useState } from 'react';
+import { Workspace as IBEWorkspace } from '../../api/types';
 import DosspaceApi from '../api';
 import '../style/WorkspaceList.css';
-import { HomepageWorkspace } from '../utils/interfaces/HomepageWorkspace';
 import { IWorkspace } from '../utils/interfaces/IWorkspace';
-import { Workspace as IBEWorkspace } from '../../api/types';
-import Workspace from './Workspace';
 import { IWorkspaceForm } from '../utils/interfaces/IWorkspaceForm';
-import ShipmentInput from './ShipmentInput';
+import Workspace from './Workspace';
 import WorkspaceInput from './WorkspaceInput';
 
 export default function WorkspaceList() {
   const [workspaces, setWorkspaces] = useState<IWorkspace[]>([]);
-
   const [workspaceForm, setWworkspaceForm] = useState<IWorkspaceForm>({ title: '' });
 
   useEffect(() => {
@@ -85,10 +82,10 @@ export default function WorkspaceList() {
         ))}
       </div>
 
-      <form onSubmit={handleCreateNewWorkspace}>
+      <form className='WorkspaceList__workspaceForm' onSubmit={handleCreateNewWorkspace}>
         <WorkspaceInput name="Workspace title" keyStr="title" form={workspaceForm} setForm={setWworkspaceForm} />
 
-        <button type='submit'>Create new workspace</button>
+        <button className='WorkspaceList__submit' type='submit'>Create new workspace</button>
       </form>
 
     </div>
