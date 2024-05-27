@@ -11,7 +11,7 @@ export default function WorkspaceInput({ name, keyStr, form, setForm }: IWorkspa
     return (
         <div className="WorkspaceInput">
             <div className="WorkspaceInput__label">{ name }</div>
-            <input type="text" onChange={handleInputChange} className="WorkspaceInput__input" value={form[keyStr]} />
+            <input required type="text" onChange={handleInputChange} className="WorkspaceInput__input" value={form[keyStr]} />
         </div>
     );
 }
