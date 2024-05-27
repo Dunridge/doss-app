@@ -6,6 +6,7 @@ import { IWorkspace } from '../utils/interfaces/IWorkspace';
 import { IWorkspaceForm } from '../utils/interfaces/IWorkspaceForm';
 import Workspace from './Workspace';
 import WorkspaceInput from './WorkspaceInput';
+import { toast } from 'react-toastify';
 
 export default function WorkspaceList() {
   const [workspaces, setWorkspaces] = useState<IWorkspace[]>([]);
@@ -71,6 +72,7 @@ export default function WorkspaceList() {
 
         if (resWorkspace) {
           setWorkspaces([...workspaces, resWorkspace]);
+          toast.success('Workspace created successfully');
         }
       }
     } catch (error) {
