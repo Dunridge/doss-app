@@ -11,6 +11,7 @@ export const shipmentFormFieldsArr: IShipmentInput[] = [
     },
     {
         keyStr: 'cost',
-        name: 'Cost'
+        name: 'Cost',
+        type: 'number'
     },
 ]

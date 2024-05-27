@@ -4,5 +4,6 @@ export interface IShipmentInputProps {
     keyStr: string;
     name: string;
     form: IShipmentForm;
-    setForm: React.Dispatch<React.SetStateAction<IShipmentForm>>
+    setForm: React.Dispatch<React.SetStateAction<IShipmentForm>>;
+    type?: 'text' | 'number';
 }

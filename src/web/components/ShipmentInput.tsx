@@ -2,7 +2,7 @@ import { IShipmentInputProps } from "../utils/interfaces/IShipmentInputProps";
 import '../style/ShipmentInput.css';
 
 
-export default function ShipmentInput({ name, keyStr, form, setForm }: IShipmentInputProps) {
+export default function ShipmentInput({ name, keyStr, form, setForm, type = 'text' }: IShipmentInputProps) {
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const inputValue = e.target.value;
@@ -12,7 +12,7 @@ export default function ShipmentInput({ name, keyStr, form, setForm }: IShipment
     return (
         <div className="ShipmentInput">
             <div className="ShipmentInput__label">{ name }</div>
-            <input type="text" onChange={handleInputChange} className="ShipmentInput__input" value={form[keyStr]} />
+            <input type={type} onChange={handleInputChange} className="ShipmentInput__input" value={form[keyStr]} />
         </div>
     );
 }

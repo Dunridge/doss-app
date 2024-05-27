@@ -79,7 +79,7 @@ export default function Workspace({ id, title, buildShipments }: IWorkspaceProps
 
                 <form className="WorkspaceList__form" action="" onSubmit={handleAddShipment}>
                     <div className="WorkspaceList__form-fields">
-                        { shipmentFormFieldsArr?.map((shipmentInput: IShipmentInput) => (<ShipmentInput key={shipmentInput.keyStr} form={shipmentForm} setForm={setShipmentForm} name={shipmentInput.name} keyStr={shipmentInput.keyStr} />))}
+                        { shipmentFormFieldsArr?.map((shipmentInput: IShipmentInput) => (<ShipmentInput key={shipmentInput.keyStr} form={shipmentForm} setForm={setShipmentForm} name={shipmentInput.name} keyStr={shipmentInput.keyStr} type={shipmentInput.type} />))}
                     </div>
                     <button className="WorkspaceList__submit" type='submit'>Add Shipment</button>
                 </form>
