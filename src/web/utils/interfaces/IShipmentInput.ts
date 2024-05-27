@@ -1,6 +1,7 @@
+import { TextOrNumberInputType } from "../types/TextOrNumberInputType";
 
 export interface IShipmentInput {
     keyStr: string;
     name: string;
-    type?: 'text' | 'number';
+    type?: TextOrNumberInputType;
 }

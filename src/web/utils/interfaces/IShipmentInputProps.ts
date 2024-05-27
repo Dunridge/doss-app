@@ -1,3 +1,4 @@
+import { TextOrNumberInputType } from "../types/TextOrNumberInputType";
 import { IShipmentForm } from "./IShipmentForm";
 
 export interface IShipmentInputProps {
@@ -5,5 +6,5 @@ export interface IShipmentInputProps {
     name: string;
     form: IShipmentForm;
     setForm: React.Dispatch<React.SetStateAction<IShipmentForm>>;
-    type?: 'text' | 'number';
+    type?: TextOrNumberInputType;
 }
