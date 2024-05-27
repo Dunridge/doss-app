@@ -11,6 +11,15 @@
   box-sizing: border-box;
 }
 
+.ShipmentInput__label-container {
+  margin-bottom: 8px;
+}
+
 .ShipmentInput__label {
     font-weight: 600;
+}
+
+.ShipmentInput__tooltip {
+  font-size: 14px;
+  font-style: italic;
 }

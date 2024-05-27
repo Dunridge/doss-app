@@ -94,7 +94,7 @@ export default function ShipmentTable({ buildNumber, id, shipments, workspace, s
                 {/* TODO: rename these classNames and copy the styles  */}
                 <form className="WorkspaceList__form" action="" onSubmit={handleAddShipment}>
                     <div className="WorkspaceList__form-fields">
-                        {shipmentFormFieldsArr?.map((shipmentInput: IShipmentInput) => (<ShipmentInput key={shipmentInput.keyStr} form={shipmentForm} setForm={setShipmentForm} name={shipmentInput.name} keyStr={shipmentInput.keyStr} type={shipmentInput.type} pattern={shipmentInput.pattern} />))}
+                        {shipmentFormFieldsArr?.map((shipmentInput: IShipmentInput) => (<ShipmentInput key={shipmentInput.keyStr} form={shipmentForm} setForm={setShipmentForm} name={shipmentInput.name} keyStr={shipmentInput.keyStr} type={shipmentInput.type} pattern={shipmentInput.pattern} tooltip={shipmentInput.tooltip} />))}
                     </div>
                     <button className="WorkspaceList__submit" type='submit'>Add Shipment</button>
                 </form>
